@@ -1,12 +1,18 @@
 var AM = new AssetManager();
 var socket = io.connect("http://24.16.255.56:8888");
 
-socket.emit("save", {studentname: "Brian Khang", statename: "aState", data: "Pikachu"});
-socket.emit("load", {studentname: "Brian Khang", statename: "aState"});
-
-window.onload = function() {
-	
-}
+socket.on("load", function (theTrainer, thePikachu) {
+    trainer = theTrainer;
+    pikachu = thePikachu;
+});
+//if(this.game.saveButton) {
+//        console.log("The save key was pressed");
+//        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+//    }
+//    if(this.game.loadButton) {
+//        console.log("The load key was pressed");
+//        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
+//    }
 
 //State 0 = right; 1 = left; 2 = up; 3 = down
 var state = 0;
@@ -132,6 +138,15 @@ Trainer_Left.prototype.update = function() {
     	this.x = 300;
     	this.y = 405;
     }
+    
+    if(this.game.saveButton) {
+        console.log("The save key was pressed");
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+    }
+    if(this.game.loadButton) {
+        console.log("The load key was pressed");
+        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
+    }
     this.boundingbox = new BoundingBox(this.x + 5 , this.y + 5 , this.animation.frameWidth - 12 , this.animation.frameHeight - 4);
     Entity.prototype.update.call(this);
 }
@@ -167,6 +182,14 @@ Trainer_Right.prototype.update = function() {
     	state = 3;
     	this.x = 100;
     	this.y = 0;
+    }
+    if(this.game.saveButton) {
+        console.log("The save key was pressed");
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+    }
+    if(this.game.loadButton) {
+        console.log("The load key was pressed");
+        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }
     this.boundingbox = new BoundingBox(this.x + 5 , this.y + 5 , this.animation.frameWidth - 12 , this.animation.frameHeight - 4);
     Entity.prototype.update.call(this);
@@ -212,6 +235,14 @@ Trainer_Up.prototype.update = function() {
     	this.y = 410;
     	loopSpeed += 1;
     }
+    if(this.game.saveButton) {
+        console.log("The save key was pressed");
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+    }
+    if(this.game.loadButton) {
+        console.log("The load key was pressed");
+        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
+    }
     this.boundingbox = new BoundingBox(this.x + 5 , this.y + 5 , this.animation.frameWidth - 12 , this.animation.frameHeight - 4);
     Entity.prototype.update.call(this);
 }
@@ -255,6 +286,14 @@ Trainer_Down.prototype.update = function() {
         	ob.captured = true;
         	caught += 1;
         }
+    }
+    if(this.game.saveButton) {
+        console.log("The save key was pressed");
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+    }
+    if(this.game.loadButton) {
+        console.log("The load key was pressed");
+        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }
     this.boundingbox = new BoundingBox(this.x + 5 , this.y + 5 , this.animation.frameWidth - 12 , this.animation.frameHeight - 4);
     Entity.prototype.update.call(this);

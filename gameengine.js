@@ -63,6 +63,46 @@ GameEngine.prototype.loop = function () {
     this.draw();
 }
 
+GameEngine.prototype.startInput = function() {
+	console.log('Starting input');
+	this.ctx.canvas.addEventListener("keydown", function (e) {
+		if (e.keyCode == 49) {
+			console.log("save");
+			that.saveButton = true;
+		}
+		if (e.keyCode == 50) {
+			console.log("load");
+			that.loadButton = true;
+		}
+		e.preventDefault();
+		 
+	}, false);
+	
+	this.ctx.canvas.addEventListener("keyup", function (e) {
+		console.log(e);
+		if (e.keyCode == 49) {
+			console.log("save");
+			that.saveButton = false;
+		}
+		if (e.keyCode == 50) {
+			console.log("load");
+			that.loadButton = false;
+		}
+		console.log("Key Up Event - Char " + e.code + " Code " + e.keyCode);
+	}, false);
+	
+	this.ctx.canvas.addEventListener("keydown", function (e) {
+        console.log(e);
+        console.log("Key Down Event - Char " + e.code + " Code " + e.keyCode);
+    }, false);
+	
+	this.ctx.canvas.addEventListener("keyup", function (e) {
+        console.log(e);
+        console.log("Key Up Event - Char " + e.code + " Code " + e.keyCode);
+    }, false);
+        
+}
+
 function Timer() {
     this.gameTime = 0;
     this.maxStep = 0.05;

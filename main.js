@@ -1,9 +1,10 @@
 var AM = new AssetManager();
 var socket = io.connect("http://24.16.255.56:8888");
 
-socket.on("load", function (theTrainer, thePikachu) {
+socket.on("load", function (theTrainer, thePikachu, theCaught) {
     trainer = theTrainer;
-    pikachu = thePikachu;
+    pikachu = thePikachu
+    caught = theCaught;
 });
 //if(this.game.saveButton) {
 //        console.log("The save key was pressed");
@@ -141,7 +142,7 @@ Trainer_Left.prototype.update = function() {
     
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -185,7 +186,7 @@ Trainer_Right.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -237,7 +238,7 @@ Trainer_Up.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -289,7 +290,7 @@ Trainer_Down.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");

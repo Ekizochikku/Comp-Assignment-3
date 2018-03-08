@@ -66,11 +66,11 @@ GameEngine.prototype.loop = function () {
 GameEngine.prototype.startInput = function() {
 	console.log('Starting input');
 	this.ctx.canvas.addEventListener("keydown", function (e) {
-		if (e.keyCode == 49) {
+		if (e.keyCode == 83) {
 			console.log("save");
 			that.saveButton = true;
 		}
-		if (e.keyCode == 50) {
+		if (e.keyCode == 76) {
 			console.log("load");
 			that.loadButton = true;
 		}
@@ -80,11 +80,11 @@ GameEngine.prototype.startInput = function() {
 	
 	this.ctx.canvas.addEventListener("keyup", function (e) {
 		console.log(e);
-		if (e.keyCode == 49) {
+		if (e.keyCode == 83) {
 			console.log("save");
 			that.saveButton = false;
 		}
-		if (e.keyCode == 50) {
+		if (e.keyCode == 76) {
 			console.log("load");
 			that.loadButton = false;
 		}

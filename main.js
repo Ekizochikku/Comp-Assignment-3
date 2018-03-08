@@ -1,10 +1,10 @@
 var AM = new AssetManager();
 var socket = io.connect("http://24.16.255.56:8888");
 
-socket.on("load", function (theTrainer, thePikachu, theCaught) {
-    trainer = theTrainer;
-    pikachu = thePikachu
-    caught = theCaught;
+socket.on("load", function (data) {
+    trainer = data.theTrainer;
+    pikachu = data.thePikachu
+    caught = data.theCaught;
 });
 //if(this.game.saveButton) {
 //        console.log("The save key was pressed");

@@ -146,7 +146,7 @@ Trainer_Left.prototype.update = function() {
     
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -190,7 +190,7 @@ Trainer_Right.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -232,6 +232,7 @@ Trainer_Up.prototype.update = function() {
         if(this.boundingbox.collide(ob.boundingbox)) {
         	ob.captured = true;
         	caught += 1;
+        	console.log(caught);
         }
     }
     
@@ -242,7 +243,7 @@ Trainer_Up.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -290,11 +291,12 @@ Trainer_Down.prototype.update = function() {
         if(this.boundingbox.collide(ob.boundingbox)) {
         	ob.captured = true;
         	caught += 1;
+        	console.log(caught);
         }
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner, theCaught: caught});
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -436,8 +438,10 @@ Score.prototype.update = function() {
 	//Entity.prototype.update.call(this);
 };
 Score.prototype.draw = function() {
-	if (caught != 500) return;
-	this.ctx.fillText("Pikachu has overrun you. Can't Catch Them All", this.x, this.y);
+	if (caught === 500) {
+		this.ctx.fillText("Pikachu has overrun you. Can't Catch Them All", this.x, this.y);
+	}
+	
 };
 
 AM.queueDownload("./img/Trainer.png");

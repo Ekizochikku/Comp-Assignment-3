@@ -5,6 +5,9 @@ socket.on("load", function (data) {
     trainer = data.theTrainer;
     pikachu = data.thePikachu
     caught = data.theCaught;
+    console.log(data.theTrainer);
+    console.log(data.thePikachu);
+    console.log(data.theCaught);
 });
 //if(this.game.saveButton) {
 //        console.log("The save key was pressed");

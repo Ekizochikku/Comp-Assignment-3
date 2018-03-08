@@ -21,6 +21,7 @@ GameEngine.prototype.init = function (ctx) {
     this.surfaceWidth = this.ctx.canvas.width;
     this.surfaceHeight = this.ctx.canvas.height;
     this.timer = new Timer();
+    this.startInput();
     console.log('game initialized');
 }
 

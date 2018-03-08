@@ -128,7 +128,7 @@ Trainer_Left.prototype = new Entity();
 Trainer_Left.prototype.constructor = Trainer_Left;
 
 Trainer_Left.prototype.update = function() {
-	if (state != 1 || caught === 1000) return;
+	if (state != 1 || caught === 500) return;
 	this.x -= this.game.clockTick * this.speed;
 //    if (this.x > 800) this.x = -100;
 //	    if (this.boundingbox.collide(this.game.bg.boundingbox)) {
@@ -153,7 +153,7 @@ Trainer_Left.prototype.update = function() {
 }
 
 Trainer_Left.prototype.draw = function () {
-	if (state != 1 || caught === 1000) return;
+	if (state != 1 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -173,7 +173,7 @@ Trainer_Right.prototype = new Entity();
 Trainer_Right.prototype.constructor = Trainer_Right;
 
 Trainer_Right.prototype.update = function() {
-	if (state != 0 || caught === 1000) return;
+	if (state != 0 || caught === 500) return;
 	this.x += this.game.clockTick * this.speed;
     //if (this.x > 800) this.x = -100;
 //    if (this.boundingbox.collide(this.game.bg.boundingbox)) {
@@ -197,7 +197,7 @@ Trainer_Right.prototype.update = function() {
 }
 
 Trainer_Right.prototype.draw = function () {
-	if (state != 0 || caught === 1000) return;
+	if (state != 0 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -217,7 +217,7 @@ Trainer_Up.prototype = new Entity();
 Trainer_Up.prototype.constructor = Trainer_Up;
 
 Trainer_Up.prototype.update = function() {
-	if (state != 2 || caught === 1000) return;
+	if (state != 2 || caught === 500) return;
 	this.y -= this.game.clockTick * this.speed;
     if (this.x > 800) this.x = -100;
 //    if (this.boundingbox.collide(this.game.bg.boundingbox)) {
@@ -249,7 +249,7 @@ Trainer_Up.prototype.update = function() {
 }
 
 Trainer_Up.prototype.draw = function () {
-	if (state != 2 || caught === 1000) return;
+	if (state != 2 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -269,7 +269,7 @@ Trainer_Down.prototype = new Entity();
 Trainer_Down.prototype.constructor = Trainer_Down;
 
 Trainer_Down.prototype.update = function() {
-	if (state != 3 || caught === 1000) return;
+	if (state != 3 || caught === 500) return;
 	this.y += this.game.clockTick * this.speed;
     if (this.x > 800) this.x = -100;
 //    if (this.boundingbox.collide(this.game.bg.boundingbox)) {
@@ -301,7 +301,7 @@ Trainer_Down.prototype.update = function() {
 }
 
 Trainer_Down.prototype.draw = function () {
-	if (state != 3 || caught === 1000) return;
+	if (state != 3 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -323,7 +323,7 @@ Pikachu_Right.prototype = new Entity();
 Pikachu_Right.prototype.constructor = Pikachu_Right;
 
 Pikachu_Right.prototype.update = function() {
-	if(this.rSide || this.captured || caught === 1000) return;
+	if(this.rSide || this.captured || caught === 500) return;
 	this.x += this.game.clockTick * this.speed;
 	this.boundingbox = new BoundingBox(this.x, this.y + 5 , this.animation.frameWidth, this.animation.frameHeight - 6);
     Entity.prototype.update.call(this);
@@ -333,7 +333,7 @@ Pikachu_Right.prototype.update = function() {
 }
 
 Pikachu_Right.prototype.draw = function() {
-	if(this.rSide || this.captured || caught === 1000) return;
+	if(this.rSide || this.captured || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -355,7 +355,7 @@ Pikachu_Left.prototype = new Entity();
 Pikachu_Left.prototype.constructor = Pikachu_Left;
 
 Pikachu_Left.prototype.update = function() {
-	if(this.rSide || this.captured || caught === 1000) return;
+	if(this.rSide || this.captured || caught === 500) return;
 	this.x -= this.game.clockTick * this.speed;
 	this.boundingbox = new BoundingBox(this.x, this.y + 5 , this.animation.frameWidth, this.animation.frameHeight - 6);
     Entity.prototype.update.call(this);
@@ -365,7 +365,7 @@ Pikachu_Left.prototype.update = function() {
 }
 
 Pikachu_Left.prototype.draw = function() {
-	if(this.rSide || this.captured || caught === 1000) return;
+	if(this.rSide || this.captured || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 //    this.ctx.strokeStyle = "red";
@@ -387,7 +387,7 @@ Pikachu_Spawner.prototype = new Entity();
 Pikachu_Spawner.prototype.constructor = Pikachu_Spawner;
 
 Pikachu_Spawner.prototype.update = function() {
-	if(caught === 1000) return;
+	if(caught === 500) return;
 	if (this.counter % 40 === 0) {
 //		this.rightSpawn.push(new Pikachu_Right(this.game,this.spriteSheetOne));
 //		this.leftSpawn.push(new Pikachu_Left(this.game, this.spriteSheetTwo));
@@ -405,7 +405,7 @@ Pikachu_Spawner.prototype.update = function() {
 }
 
 Pikachu_Spawner.prototype.draw = function() {
-	if(caught === 1000) return;
+	if(caught === 500) return;
 //	var pNum = this.rightSpawn.length;
 	var pNum = this.pikaArray.length;
 	for(i = 0; i < pNum; i++) {
@@ -432,7 +432,7 @@ Score.prototype.update = function() {
 	//Entity.prototype.update.call(this);
 };
 Score.prototype.draw = function() {
-	if (caught != 1000) return;
+	if (caught != 500) return;
 	this.ctx.fillText("Pikachu has overrun you. Can't Catch Them All", this.x, this.y);
 };
 

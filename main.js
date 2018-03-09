@@ -22,6 +22,27 @@ socket.on("load", function (data) {
     		pikaN.rSide = newP[4];
     	}
     	pikaS.pikaArray.push(pikaN);
+    	if (newP[7] === 0) {
+    		var TN = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
+    		state = newP[7];
+    		TN.x = newP[5];
+    		TN.y = newP[6];
+    	} else if (newP[7] === 1) {
+    		var TN = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
+    		state = newP[7];
+    		TN.x = newP[5];
+    		TN.y = newP[6];
+    	} else if (newP[7] === 2) {
+    		var TN = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
+    		state = newP[7];
+    		TN.x = newP[5];
+    		TN.y = newP[6];
+    	} else {
+    		var TN = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
+    		state = newP[7];
+    		TN.x = newP[5];
+    		TN.y = newP[6];
+    	}
     }
     
     
@@ -162,7 +183,7 @@ Trainer_Left.prototype.update = function() {
         for (var i = 0; i < pikaS.length; i++) {
         	var pika = pikaS[i];
         	if (!pika.captured) {
-        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
         }
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
@@ -212,7 +233,7 @@ Trainer_Right.prototype.update = function() {
         for (var i = 0; i < pikaS.length; i++) {
         	var pika = pikaS[i];
         	if (!pika.captured) {
-        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
         }
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
@@ -271,7 +292,7 @@ Trainer_Up.prototype.update = function() {
         for (var i = 0; i < pikaS.length; i++) {
         	var pika = pikaS[i];
         	if (!pika.captured) {
-        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
         }
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
@@ -330,7 +351,7 @@ Trainer_Down.prototype.update = function() {
         for (var i = 0; i < pikaS.length; i++) {
         	var pika = pikaS[i];
         	if (!pika.captured) {
-        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
         }
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});

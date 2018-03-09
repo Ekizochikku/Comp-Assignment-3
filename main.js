@@ -29,21 +29,25 @@ socket.on("load", function (data) {
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEntity(TN);
     	} else if (newP[7] === 1) {
     		var TN = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEntity(TN);
     	} else if (newP[7] === 2) {
     		var TN = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEntity(TN);
     	} else {
     		var TN = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEntity(TN);
     	}
     }
     
@@ -182,8 +186,8 @@ Trainer_Left.prototype.update = function() {
     
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        for (var i = 0; i < pikaS.length; i++) {
-        	var pika = pikaS[i];
+        for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        	var pika = pikaS.pikaArray[i];
         	if (!pika.captured) {
         		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
@@ -232,8 +236,8 @@ Trainer_Right.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        for (var i = 0; i < pikaS.length; i++) {
-        	var pika = pikaS[i];
+        for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        	var pika = pikaS.pikaArray[i];
         	if (!pika.captured) {
         		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
@@ -291,8 +295,8 @@ Trainer_Up.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        for (var i = 0; i < pikaS.length; i++) {
-        	var pika = pikaS[i];
+        for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        	var pika = pikaS.pikaArray[i];
         	if (!pika.captured) {
         		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
@@ -350,8 +354,8 @@ Trainer_Down.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        for (var i = 0; i < pikaS.length; i++) {
-        	var pika = pikaS[i];
+        for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        	var pika = pikaS.pikaArray[i];
         	if (!pika.captured) {
         		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}

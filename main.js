@@ -3,6 +3,7 @@ var socket = io.connect("http://24.16.255.56:8888");
 
 socket.on("load", function (data) {
 	console.log(data);
+	pikaHold = [];
     state = data.theTrainer;
     caught = data.theCaught;
     pikaS.pikaArray = [];
@@ -29,25 +30,21 @@ socket.on("load", function (data) {
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
-    		gameEngine.addEntity(TN);
     	} else if (newP[7] === 1) {
     		var TN = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
-    		gameEngine.addEntity(TN);
     	} else if (newP[7] === 2) {
     		var TN = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
-    		gameEngine.addEntity(TN);
     	} else {
     		var TN = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
-    		gameEngine.addEntity(TN);
     	}
     }
     

@@ -67,6 +67,7 @@ var edge = false;
 var loopSpeed = 0;
 var pikaS;
 var pikaHold = [];
+var gameEngine;
 
 function Animation(spriteSheet, startX, startY, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
@@ -525,7 +526,7 @@ AM.queueDownload("./img/Pokeball.png");
 AM.downloadAll(function () {
 	var canvas = document.getElementById("gameWorld");
 	var ctx = canvas.getContext("2d");
-	var gameEngine = new GameEngine();
+	gameEngine = new GameEngine();
 	gameEngine.init(ctx);
 	gameEngine.start();
 	

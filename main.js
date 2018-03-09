@@ -22,6 +22,7 @@ socket.on("load", function (data) {
     		pikaN.rSide = newP[4];
     	}
     	pikaS.pikaArray.push(pikaN);
+    	
     	//Check Trainer positions and state
     	if (newP[7] === 0) {
     		var TN = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
@@ -290,8 +291,8 @@ Trainer_Up.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        for (var i = 0; i < pikaS.length; i++) {
-        	var pika = pikaS[i];
+        for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        	var pika = pikaS.pikaArray[i];
         	if (!pika.captured) {
         		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide, this.x, this.y, state]);
         	}
@@ -339,8 +340,8 @@ Trainer_Down.prototype.update = function() {
     	this.y = 0;
     }
     
-    for (var i = 0; i < pikaS.length; i++) {
-        var ob = pikaS[i];
+    for (var i = 0; i < pikaS.pikaArray.length; i++) {
+        var ob = pikaS.pikaArray[i];
         if(this.boundingbox.collide(ob.boundingbox)) {
         	ob.captured = true;
         	caught += 1;

@@ -3,21 +3,32 @@ var socket = io.connect("http://24.16.255.56:8888");
 
 socket.on("load", function (data) {
 	console.log(data);
-    trainer = data.theTrainer;
-    pikachu = data.thePikachu
+    state = data.theTrainer;
     caught = data.theCaught;
+    pikaS.pikaArray = [];
+    for (var i = 0; i < data.thePikachu.length; i++) {
+    	var newP = data.thePikachu[i];
+    	if (newP[3] === 0) {
+    		var pikaN = new Pikachu_Right(gameEngine, AM.getAsset("./img/Pikachu_Right.png"));
+    		pikaN.x = newP[0];
+    		pikaN.y = newP[1];
+    		pikaN.captured = newP[2];
+    		pikaN.rSide = newP[4];
+    	} else {
+    		var pikaN = new Pikachu_Left(gameEngine, AM.getAsset("./img/Pikachu_Left.png"));
+    		pikaN.x = newP[0];
+    		pikaN.y = newP[1];
+    		pikaN.captured = newP[2];
+    		pikaN.rSide = newP[4];
+    	}
+    	pikaS.pikaArray.push(pikaN);
+    }
+    
+    
     console.log(data.theTrainer);
     console.log(data.thePikachu);
     console.log(data.theCaught);	
 });
-//if(this.game.saveButton) {
-//        console.log("The save key was pressed");
-//        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: Pikachu_Spawner});
-//    }
-//    if(this.game.loadButton) {
-//        console.log("The load key was pressed");
-//        socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
-//    }
 
 //State 0 = right; 1 = left; 2 = up; 3 = down
 var state = 0;
@@ -28,6 +39,7 @@ var pCount = 0;
 var edge = false;
 var loopSpeed = 0;
 var pikaS;
+var pikaHold = [];
 
 function Animation(spriteSheet, startX, startY, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
@@ -147,7 +159,13 @@ Trainer_Left.prototype.update = function() {
     
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
+        for (var i = 0; i < pikaS.length; i++) {
+        	var pika = pikaS[i];
+        	if (!pika.captured) {
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        	}
+        }
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -191,7 +209,13 @@ Trainer_Right.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
+        for (var i = 0; i < pikaS.length; i++) {
+        	var pika = pikaS[i];
+        	if (!pika.captured) {
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        	}
+        }
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -228,12 +252,12 @@ Trainer_Up.prototype.update = function() {
 //    if (this.boundingbox.collide(this.game.bg.boundingbox)) {
 //    	state = 0;
 //    }
-    for (var i = 0; i < this.game.pikaS.length; i++) {
-        var ob = this.game.pikaS[i];
+    for (var i = 0; i < pikaS.length; i++) {
+        var ob = pikaS[i];
         if(this.boundingbox.collide(ob.boundingbox)) {
         	ob.captured = true;
         	caught += 1;
-        	console.log(caught);
+        	//console.log(caught);
         }
     }
     
@@ -244,7 +268,13 @@ Trainer_Up.prototype.update = function() {
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
+        for (var i = 0; i < pikaS.length; i++) {
+        	var pika = pikaS[i];
+        	if (!pika.captured) {
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        	}
+        }
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -287,17 +317,23 @@ Trainer_Down.prototype.update = function() {
     	this.y = 0;
     }
     
-    for (var i = 0; i < this.game.pikaS.length; i++) {
-        var ob = this.game.pikaS[i];
+    for (var i = 0; i < pikaS.length; i++) {
+        var ob = pikaS[i];
         if(this.boundingbox.collide(ob.boundingbox)) {
         	ob.captured = true;
         	caught += 1;
-        	console.log(caught);
+        	//console.log(caught);
         }
     }
     if(this.game.saveButton) {
         console.log("The save key was pressed");
-        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaS, theCaught: caught});
+        for (var i = 0; i < pikaS.length; i++) {
+        	var pika = pikaS[i];
+        	if (!pika.captured) {
+        		pikaHold.push([pika.x, pika.y, pika.captured, pika.type, pika.rSide]);
+        	}
+        }
+        socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
         console.log("The load key was pressed");
@@ -324,6 +360,7 @@ function Pikachu_Right(game, spriteSheet) {
 	this.boundingbox = new BoundingBox(this.x + 100, this.y + 100, 33, 32);
 	this.rSide = false;
 	this.captured = false;
+	this.type = 0;
 	Entity.call(this, game, 0, 100);
 }
 Pikachu_Right.prototype = new Entity();
@@ -356,6 +393,7 @@ function Pikachu_Left(game, spriteSheet) {
 	this.boundingbox = new BoundingBox(this.x + 100, this.y + 100, 33, 32);
 	this.rSide = false;
 	this.captured = false;
+	this.type = 1;
 	Entity.call(this, game, 426, 300);
 }
 Pikachu_Left.prototype = new Entity();
@@ -382,8 +420,6 @@ Pikachu_Left.prototype.draw = function() {
 //Pikachu Spawner
 function Pikachu_Spawner(game, spriteSheetOne, spriteSheetTwo) {
 	this.pikaArray = [];
-//	this.rightSpawn = [];
-//	this.leftSpawn = [];
 	this.spriteSheetOne = spriteSheetOne;
 	this.spriteSheetTwo = spriteSheetTwo;
 	this.game = game;
@@ -396,16 +432,11 @@ Pikachu_Spawner.prototype.constructor = Pikachu_Spawner;
 Pikachu_Spawner.prototype.update = function() {
 	if(caught === 500) return;
 	if (this.counter % 40 === 0) {
-//		this.rightSpawn.push(new Pikachu_Right(this.game,this.spriteSheetOne));
-//		this.leftSpawn.push(new Pikachu_Left(this.game, this.spriteSheetTwo));
 		this.pikaArray.push(new Pikachu_Right(this.game,this.spriteSheetOne));
 		this.pikaArray.push(new Pikachu_Left(this.game, this.spriteSheetTwo));
 	}
-//	var pNum = this.rightSpawn.length;
 	var pNum = this.pikaArray.length;
 	for (i = 0; i < pNum; i++) {
-//		this.rightSpawn[i].update();
-//		this.leftSpawn[i].update();
 		this.pikaArray[i].update();
 	}
 	this.counter++;
@@ -413,11 +444,8 @@ Pikachu_Spawner.prototype.update = function() {
 
 Pikachu_Spawner.prototype.draw = function() {
 	if(caught === 500) return;
-//	var pNum = this.rightSpawn.length;
 	var pNum = this.pikaArray.length;
 	for(i = 0; i < pNum; i++) {
-//		this.rightSpawn[i].draw();
-//		this.leftSpawn[i].draw();
 		this.pikaArray[i].draw();
 	}
 }
@@ -429,7 +457,6 @@ function Score(game, color, x, y) {
 	this.ctx = game.ctx;
 	this.ctx.font = "19px Arial";
 	this.ctx.fillStyle = color;
-	this.ctx.fillText("SCORE: " + this.score, this.x, this.y);
 	Entity.call(this, game, x, y);
 }
 
@@ -444,6 +471,23 @@ Score.prototype.draw = function() {
 	}
 	
 };
+
+function Info(game, color) {
+	this.color = color;
+	this.ctx = game.ctx;
+	this.ctx.font = "15px Arial";
+	this.ctx.fillStyle = color;
+	Entity.call(this, game);
+}
+
+Info.prototype.constructor = Info;
+Info.prototype.update = function() {
+	
+}
+Info.prototype.draw = function() {
+	this.ctx.fillText("Press S to save", 180, 90);
+	this.ctx.fillText("Press L to Load", 180, 350);
+}
 
 AM.queueDownload("./img/Trainer.png");
 AM.queueDownload("./img/Pikachu_Left.png");
@@ -461,6 +505,7 @@ AM.downloadAll(function () {
 	bg = new Background(gameEngine, AM.getAsset("./img/background.jpg"));
 	gameEngine.addEntity(bg);
 	gameEngine.addEntity(new Score(gameEngine, "yellow", 30, 230));
+	gameEngine.addEntity(new Info(gameEngine, "white"));
 	gameEngine.bg = bg;
 	
 //	var tUp = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));

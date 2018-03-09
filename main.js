@@ -29,18 +29,42 @@ socket.on("load", function (data) {
     		state = newP[7];
     		tR.x = newP[5];
     		tR.y = newP[6];
+    		tL.x = 300;
+    		tL.y = 405;
+    		tU.x = 100;
+    		tU.y = 410;
+    		tD.x = 300
+    		tD.y = 0;
     	} else if (newP[7] === 1) {
     		state = newP[7];
     		tL.x = newP[5];
     		tL.y = newP[6];
+    		tR.x = 100;
+    		tR.y = 0;
+    		tU.x = 100;
+    		tU.y = 410;
+    		tD.x = 300;
+    		tD.y = 0;
     	} else if (newP[7] === 2) {
     		state = newP[7];
     		tU.x = newP[5];
     		tU.y = newP[6];
+    		tL.x = 300;
+    		tL.y = 405;
+    		tR.x = 100;
+    		tR.y = 0;
+    		tD.x = 300;
+    		tD.y = 0;
     	} else {
     		state = newP[7];
     		tD.x = newP[5];
     		tD.y = newP[6];
+    		tL.x = 300;
+    		tL.y = 405;
+    		tR.x = 100;
+    		tR.y = 0;
+    		tU.x = 100;
+    		tU.y = 410;
     	}
     }
     

@@ -27,6 +27,7 @@ var caught = 0;
 var pCount = 0;
 var edge = false;
 var loopSpeed = 0;
+var pikaS;
 
 function Animation(spriteSheet, startX, startY, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
@@ -468,7 +469,7 @@ AM.downloadAll(function () {
 //	var tRight = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
 //	var pRight = new Pikachu_Right(gameEngine, AM.getAsset("./img/Pikachu_Right.png"));
 //	var pLeft = new Pikachu_Left(gameEngine, AM.getAsset("./img/Pikachu_Left.png"));
-	var pikaS = new Pikachu_Spawner(gameEngine, AM.getAsset("./img/Pikachu_Right.png"), AM.getAsset("./img/Pikachu_Left.png"));
+	pikaS = new Pikachu_Spawner(gameEngine, AM.getAsset("./img/Pikachu_Right.png"), AM.getAsset("./img/Pikachu_Left.png"));
 	gameEngine.addEntity(pikaS);
 	gameEngine.pikaS = pikaS.pikaArray;
 //	

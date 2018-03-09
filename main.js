@@ -26,29 +26,21 @@ socket.on("load", function (data) {
     	
     	//Check Trainer positions and state
     	if (newP[7] === 0) {
-    		var TN = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
-    		TN.x = newP[5];
-    		TN.y = newP[6];
-    		gameEngine.addEdntity(TN);
+    		tR.x = newP[5];
+    		tR.y = newP[6];
     	} else if (newP[7] === 1) {
-    		var TN = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
-    		TN.x = newP[5];
-    		TN.y = newP[6];
-    		gameEngine.addEdntity(TN);
+    		tL.x = newP[5];
+    		tL.y = newP[6];
     	} else if (newP[7] === 2) {
-    		var TN = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
-    		TN.x = newP[5];
-    		TN.y = newP[6];
-    		gameEngine.addEdntity(TN);
+    		tU.x = newP[5];
+    		tU.y = newP[6];
     	} else {
-    		var TN = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
-    		TN.x = newP[5];
-    		TN.y = newP[6];
-    		gameEngine.addEdntity(TN);
+    		tD.x = newP[5];
+    		tD.y = newP[6];
     	}
     }
     
@@ -69,6 +61,10 @@ var loopSpeed = 0;
 var pikaS;
 var pikaHold = [];
 var gameEngine;
+var tU;
+var tD;
+var tR;
+var tL;
 
 function Animation(spriteSheet, startX, startY, frameWidth, frameHeight, frameDuration, frames, loop, reverse) {
     this.spriteSheet = spriteSheet;
@@ -503,7 +499,7 @@ Score.prototype.update = function() {
 	//Entity.prototype.update.call(this);
 };
 Score.prototype.draw = function() {
-	if (caught === 500) {
+	if (caught > 500) {
 		this.ctx.fillText("Pikachu has overrun you. Can't Catch Them All", this.x, this.y);
 	}
 	
@@ -545,29 +541,27 @@ AM.downloadAll(function () {
 	gameEngine.addEntity(new Info(gameEngine, "white"));
 	gameEngine.bg = bg;
 	
-//	var tUp = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
-//	var tDown = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
-//	var tLeft = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
-//	var tRight = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
-//	var pRight = new Pikachu_Right(gameEngine, AM.getAsset("./img/Pikachu_Right.png"));
-//	var pLeft = new Pikachu_Left(gameEngine, AM.getAsset("./img/Pikachu_Left.png"));
+	var tU = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
+	var tD = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
+	var tL = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
+	var tR = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
 	pikaS = new Pikachu_Spawner(gameEngine, AM.getAsset("./img/Pikachu_Right.png"), AM.getAsset("./img/Pikachu_Left.png"));
 	gameEngine.addEntity(pikaS);
 	gameEngine.pikaS = pikaS.pikaArray;
 //	
-//	gameEngine.addEntity(tUp);
-//	gameEngine.addEntity(tDown);
-//	gameEngine.addEntity(tLeft);
-//	gameEngine.addEntity(tRight);
-//	gameEngine.tUp = tUp;
-//	gameEngine.tDown = tDown;
-//	gameEngine.tLeft = tLeft;
-//	gameEngine.tRight = tRight;
+	gameEngine.addEntity(tU);
+	gameEngine.addEntity(tD);
+	gameEngine.addEntity(tL);
+	gameEngine.addEntity(tR);
+	gameEngine.tU = tU;
+	gameEngine.tD = tD;
+	gameEngine.tL = tL;
+	gameEngine.tR = tR;
 
-	gameEngine.addEntity(new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png")));
-	gameEngine.addEntity(new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png")));
-	gameEngine.addEntity(new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png")));
-	gameEngine.addEntity(new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png")));
+//	gameEngine.addEntity(new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png")));
+//	gameEngine.addEntity(new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png")));
+//	gameEngine.addEntity(new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png")));
+//	gameEngine.addEntity(new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png")));
 	
 	console.log("Done");
 });

@@ -30,21 +30,25 @@ socket.on("load", function (data) {
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEdntity(TN);
     	} else if (newP[7] === 1) {
     		var TN = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEdntity(TN);
     	} else if (newP[7] === 2) {
     		var TN = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEdntity(TN);
     	} else {
     		var TN = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
     		TN.x = newP[5];
     		TN.y = newP[6];
+    		gameEngine.addEdntity(TN);
     	}
     }
     
@@ -319,8 +323,8 @@ Trainer_Up.prototype.draw = function () {
 	if (state != 2 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
-    this.ctx.strokeStyle = "red";
-    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
+//    this.ctx.strokeStyle = "red";
+//    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
 }
 
 //Trainer Down
@@ -380,8 +384,8 @@ Trainer_Down.prototype.draw = function () {
 	if (state != 3 || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
-    this.ctx.strokeStyle = "red";
-    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
+//    this.ctx.strokeStyle = "red";
+//    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
 }
 
 //Pikachu Right
@@ -413,8 +417,8 @@ Pikachu_Right.prototype.draw = function() {
 	if(this.rSide || this.captured || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
-    this.ctx.strokeStyle = "red";
-    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
+//    this.ctx.strokeStyle = "red";
+//    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
 }
 
 //Pikachu Left
@@ -446,8 +450,8 @@ Pikachu_Left.prototype.draw = function() {
 	if(this.rSide || this.captured || caught === 500) return;
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
-    this.ctx.strokeStyle = "red";
-    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
+//    this.ctx.strokeStyle = "red";
+//    this.ctx.strokeRect(this.boundingbox.x, this.boundingbox.y, this.boundingbox.width, this.boundingbox.height);
 }
 
 //Pikachu Spawner

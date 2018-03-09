@@ -183,6 +183,7 @@ Trainer_Left.prototype.update = function() {
     }
     
     if(this.game.saveButton) {
+    	this.game.saveButton = false;
         console.log("The save key was pressed");
         for (var i = 0; i < pikaS.pikaArray.length; i++) {
         	var pika = pikaS.pikaArray[i];
@@ -193,6 +194,7 @@ Trainer_Left.prototype.update = function() {
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
+    	this.game.loadButton = false;
         console.log("The load key was pressed");
         socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }
@@ -233,6 +235,7 @@ Trainer_Right.prototype.update = function() {
     	this.y = 0;
     }
     if(this.game.saveButton) {
+    	this.game.saveButton = false;
         console.log("The save key was pressed");
         for (var i = 0; i < pikaS.pikaArray.length; i++) {
         	var pika = pikaS.pikaArray[i];
@@ -243,6 +246,7 @@ Trainer_Right.prototype.update = function() {
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
+    	this.game.loadButton = false;
         console.log("The load key was pressed");
         socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }
@@ -292,6 +296,7 @@ Trainer_Up.prototype.update = function() {
     	loopSpeed += 1;
     }
     if(this.game.saveButton) {
+    	this.game.saveButton = false;
         console.log("The save key was pressed");
         for (var i = 0; i < pikaS.pikaArray.length; i++) {
         	var pika = pikaS.pikaArray[i];
@@ -302,6 +307,7 @@ Trainer_Up.prototype.update = function() {
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
+    	this.game.loadButton = false;
         console.log("The load key was pressed");
         socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }
@@ -351,6 +357,7 @@ Trainer_Down.prototype.update = function() {
         }
     }
     if(this.game.saveButton) {
+    	this.game.saveButton = false;
         console.log("The save key was pressed");
         for (var i = 0; i < pikaS.pikaArray.length; i++) {
         	var pika = pikaS.pikaArray[i];
@@ -361,6 +368,7 @@ Trainer_Down.prototype.update = function() {
         socket.emit("save", { studentname: "Brian Khang", statename: "initial", theTrainer: state, thePikachu: pikaHold, theCaught: caught});
     }
     if(this.game.loadButton) {
+    	this.game.loadButton = false;
         console.log("The load key was pressed");
         socket.emit("load", { studentname: "Brian Khang", statename: "initial" });
     }

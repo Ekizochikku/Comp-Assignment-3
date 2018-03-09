@@ -541,10 +541,10 @@ AM.downloadAll(function () {
 	gameEngine.addEntity(new Info(gameEngine, "white"));
 	gameEngine.bg = bg;
 	
-	var tU = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
-	var tD = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
-	var tL = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
-	var tR = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
+	tU = new Trainer_Up(gameEngine, AM.getAsset("./img/Trainer.png"));
+	tD = new Trainer_Down(gameEngine, AM.getAsset("./img/Trainer.png"));
+	tL = new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png"));
+	tR = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
 	pikaS = new Pikachu_Spawner(gameEngine, AM.getAsset("./img/Pikachu_Right.png"), AM.getAsset("./img/Pikachu_Left.png"));
 	gameEngine.addEntity(pikaS);
 	gameEngine.pikaS = pikaS.pikaArray;
@@ -553,10 +553,10 @@ AM.downloadAll(function () {
 	gameEngine.addEntity(tD);
 	gameEngine.addEntity(tL);
 	gameEngine.addEntity(tR);
-	gameEngine.tU = tU;
-	gameEngine.tD = tD;
-	gameEngine.tL = tL;
-	gameEngine.tR = tR;
+//	gameEngine.tU = tU;
+//	gameEngine.tD = tD;
+//	gameEngine.tL = tL;
+//	gameEngine.tR = tR;
 
 //	gameEngine.addEntity(new Trainer_Left(gameEngine, AM.getAsset("./img/Trainer.png")));
 //	gameEngine.addEntity(new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png")));

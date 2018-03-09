@@ -22,6 +22,7 @@ socket.on("load", function (data) {
     		pikaN.rSide = newP[4];
     	}
     	pikaS.pikaArray.push(pikaN);
+    	//Check Trainer positions and state
     	if (newP[7] === 0) {
     		var TN = new Trainer_Right(gameEngine, AM.getAsset("./img/Trainer.png"));
     		state = newP[7];
